@@ -26,7 +26,9 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					light: 'hsl(var(--primary-light))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -51,6 +53,19 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				// Agricultural theme colors
+				harvest: {
+					DEFAULT: 'hsl(var(--harvest-gold))',
+					light: 'hsl(var(--harvest-gold-light))'
+				},
+				earth: {
+					DEFAULT: 'hsl(var(--earth-brown))',
+					light: 'hsl(var(--earth-brown-light))'
+				},
+				sky: {
+					DEFAULT: 'hsl(var(--sky-blue))',
+					light: 'hsl(var(--sky-blue-light))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
