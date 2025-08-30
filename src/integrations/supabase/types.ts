@@ -14,7 +14,296 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      crop_diseases: {
+        Row: {
+          created_at: string
+          crop: string
+          disease_name: string
+          id: string
+          image_url: string | null
+          region: string | null
+          season: string | null
+          solution: string | null
+          symptoms: string | null
+        }
+        Insert: {
+          created_at?: string
+          crop: string
+          disease_name: string
+          id?: string
+          image_url?: string | null
+          region?: string | null
+          season?: string | null
+          solution?: string | null
+          symptoms?: string | null
+        }
+        Update: {
+          created_at?: string
+          crop?: string
+          disease_name?: string
+          id?: string
+          image_url?: string | null
+          region?: string | null
+          season?: string | null
+          solution?: string | null
+          symptoms?: string | null
+        }
+        Relationships: []
+      }
+      escalations: {
+        Row: {
+          escalated_at: string
+          id: string
+          notes: string | null
+          officer_id: string | null
+          query_id: string
+          resolved_at: string | null
+          status: string | null
+        }
+        Insert: {
+          escalated_at?: string
+          id?: string
+          notes?: string | null
+          officer_id?: string | null
+          query_id: string
+          resolved_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          escalated_at?: string
+          id?: string
+          notes?: string | null
+          officer_id?: string | null
+          query_id?: string
+          resolved_at?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "escalations_query_id_fkey"
+            columns: ["query_id"]
+            isOneToOne: false
+            referencedRelation: "queries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      feedback: {
+        Row: {
+          comment: string | null
+          id: string
+          is_helpful: boolean | null
+          query_id: string
+          submitted_at: string
+        }
+        Insert: {
+          comment?: string | null
+          id?: string
+          is_helpful?: boolean | null
+          query_id: string
+          submitted_at?: string
+        }
+        Update: {
+          comment?: string | null
+          id?: string
+          is_helpful?: boolean | null
+          query_id?: string
+          submitted_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "feedback_query_id_fkey"
+            columns: ["query_id"]
+            isOneToOne: false
+            referencedRelation: "queries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      government_schemes: {
+        Row: {
+          benefit: string | null
+          created_at: string
+          crop: string | null
+          description: string | null
+          eligibility: string | null
+          id: string
+          official_link: string | null
+          region: string | null
+          scheme_name: string
+        }
+        Insert: {
+          benefit?: string | null
+          created_at?: string
+          crop?: string | null
+          description?: string | null
+          eligibility?: string | null
+          id?: string
+          official_link?: string | null
+          region?: string | null
+          scheme_name: string
+        }
+        Update: {
+          benefit?: string | null
+          created_at?: string
+          crop?: string | null
+          description?: string | null
+          eligibility?: string | null
+          id?: string
+          official_link?: string | null
+          region?: string | null
+          scheme_name?: string
+        }
+        Relationships: []
+      }
+      queries: {
+        Row: {
+          crop: string | null
+          district: string | null
+          id: string
+          image_url: string | null
+          issue_type: string | null
+          original_language: string | null
+          query_text: string
+          submitted_at: string
+          taluk: string | null
+          user_id: string
+        }
+        Insert: {
+          crop?: string | null
+          district?: string | null
+          id?: string
+          image_url?: string | null
+          issue_type?: string | null
+          original_language?: string | null
+          query_text: string
+          submitted_at?: string
+          taluk?: string | null
+          user_id: string
+        }
+        Update: {
+          crop?: string | null
+          district?: string | null
+          id?: string
+          image_url?: string | null
+          issue_type?: string | null
+          original_language?: string | null
+          query_text?: string
+          submitted_at?: string
+          taluk?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "queries_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      responses: {
+        Row: {
+          answer_english: string | null
+          answer_malayalam: string | null
+          created_at: string
+          id: string
+          query_id: string
+          tts_audio_url: string | null
+        }
+        Insert: {
+          answer_english?: string | null
+          answer_malayalam?: string | null
+          created_at?: string
+          id?: string
+          query_id: string
+          tts_audio_url?: string | null
+        }
+        Update: {
+          answer_english?: string | null
+          answer_malayalam?: string | null
+          created_at?: string
+          id?: string
+          query_id?: string
+          tts_audio_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "responses_query_id_fkey"
+            columns: ["query_id"]
+            isOneToOne: false
+            referencedRelation: "queries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          auth_id: string | null
+          created_at: string
+          district: string | null
+          id: string
+          language: string | null
+          name: string
+          phone_number: string | null
+          taluk: string | null
+          updated_at: string
+        }
+        Insert: {
+          auth_id?: string | null
+          created_at?: string
+          district?: string | null
+          id?: string
+          language?: string | null
+          name: string
+          phone_number?: string | null
+          taluk?: string | null
+          updated_at?: string
+        }
+        Update: {
+          auth_id?: string | null
+          created_at?: string
+          district?: string | null
+          id?: string
+          language?: string | null
+          name?: string
+          phone_number?: string | null
+          taluk?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      weather_forecast: {
+        Row: {
+          created_at: string
+          date: string
+          district: string
+          id: string
+          rainfall_mm: number | null
+          temperature: number | null
+          weather: string | null
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          district: string
+          id?: string
+          rainfall_mm?: number | null
+          temperature?: number | null
+          weather?: string | null
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          district?: string
+          id?: string
+          rainfall_mm?: number | null
+          temperature?: number | null
+          weather?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
